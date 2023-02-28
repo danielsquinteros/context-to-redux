@@ -1,36 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from './superheroSlice'
+import superheroReducers from "./superheroSlice"
 
-const initialState = {
-    bio: {},
-    isFetchingBio: false,
-    error: undefined
+const useSupehero = useDispatch;
+
+const useSelectorSuperhero = () => {
+    useSelector((state) => {
+        return state.superhero
+    })
 }
 
-const superheroSlice = createSlice({
-    name: "superhero",
-    initialState,
-    // reducers y actions que estoy creando al mismo tiempo
-    reducers: {
-        startFetchingBioSlice: (state) => {
-            state.isFetchingBio = true;
-            state.bio = {};
-            state.error = undefined;
-        },
-        successFetchingBioSlice: (state, action) => {
-            state.isFetchingBio = false;
-            state.bio = action.payload.bio;
-        },
-        errorFetchingBioSlice: (state, action) => {
-            state.isFetchingBio = false;
-            state.error = action.payload.error;
-        }
-    }
-})
-
-export const {
-    startFetchingBioSlice, 
-    successFetchingBioSlice,
-    errorFetchingBioSlice
-} = superheroSlice.actions
-
-export default superheroSlice.reducer;
+export {
+    useSupehero, useSelectorSuperhero, superheroReducers, actions
+}

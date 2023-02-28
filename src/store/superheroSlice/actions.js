@@ -1,14 +1,12 @@
-import api from "../../context/api"
-import { startFetchingBioSlice, successFetchingBioSlice, errorFetchingBioSlice } from "../superheroSlice"
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchBioThunkSlice = (id) => async(dispatch) => {
+import api from "../../context/api";
+
+export const superheroBio = createAsyncThunk('superhero/bio', async (id, { rejectWithValue }) => {
     try {
-        dispatch(startFetchingBioSlice({}))
-        const bioData = await api.Superhero.getBio(id)
-        dispatch(successFetchingBioSlice({
-            bio: bioData.data
-        }))
+      const response = await api.Superhero.getBio(id);
+      return response.data;
     } catch (error) {
-        dispatch(errorFetchingBioSlice({error}))
+      return rejectWithValue(error.response.data);
     }
-}
+  });
