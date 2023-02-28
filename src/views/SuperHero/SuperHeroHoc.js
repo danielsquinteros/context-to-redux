@@ -2,8 +2,8 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux"
-import { fetchBioThunk } from "../../store/actions/superhero";
 import { bioSel, errorSel, isFetchingSel } from "../../store/selectors/superhero";
+import { fetchBioThunkSlice } from "../../store/superheroSlice/actions";
 
 const SuperHeroHoc = (SuperHero) => function SuperHeroHoc() {
     // Dispara el thunk
@@ -12,11 +12,11 @@ const SuperHeroHoc = (SuperHero) => function SuperHeroHoc() {
     const biography = useSelector(bioSel)
     const error = useSelector(errorSel)
     const isFetching = useSelector(isFetchingSel)
-    
+
     const { id } = useParams()
 
     useEffect(() => {
-        id && dispatch(fetchBioThunk(id));
+        id && dispatch(fetchBioThunkSlice(id));
     }, [id])
     
     const renderContent = () => {

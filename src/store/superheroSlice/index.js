@@ -9,6 +9,7 @@ const initialState = {
 const superheroSlice = createSlice({
     name: "superhero",
     initialState,
+    // reducers y actions que estoy creando al mismo tiempo
     reducers: {
         startFetchingBioSlice: (state) => {
             state.isFetchingBio = true;
@@ -28,8 +29,8 @@ const superheroSlice = createSlice({
 
 export const {
     startFetchingBioSlice, 
-    successFetchingBio,
-    errorFetchingBio
+    successFetchingBioSlice,
+    errorFetchingBioSlice
 } = superheroSlice.actions
 
 export default superheroSlice.reducer;
