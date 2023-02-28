@@ -1,14 +1,14 @@
 
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
-import {  useSupehero, useSelectorSuperhero, actions } from "../../store/superheroSlice"
+import {  useSuperhero, useSelectorSuperHero, actions } from "../../store/superheroSlice"
 
 const SuperHeroHoc = (SuperHero) => function SuperHeroHoc() {
-    const dispatch = useSupehero();
-    const { bio, isFetchingBio, error } = useSelectorSuperhero()
+    const dispatch = useSuperhero();
+    const { bio, isFetchingBio, error } = useSelectorSuperHero()
     const { id } = useParams()
 
-    console.log(bio)
+    // console.log(bio)
 
     useEffect(() => {
         id && dispatch(actions.superheroBio(id));

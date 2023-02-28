@@ -2,14 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from './superheroSlice'
 import superheroReducers from "./superheroSlice"
 
-const useSupehero = useDispatch;
+const useSuperhero = useDispatch;
 
-const useSelectorSuperhero = () => {
-    useSelector((state) => {
-        return state.superhero
-    })
-}
+const useSelectorSuperHero = () => useSelector((state) =>  state.superhero )
 
 export {
-    useSupehero, useSelectorSuperhero, superheroReducers, actions
+    useSuperhero, useSelectorSuperHero, superheroReducers, actions
 }

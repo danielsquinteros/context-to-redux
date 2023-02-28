@@ -18,10 +18,9 @@ const slice = createSlice({
             state.isFetchingBio = true;
         })
         .addCase(superheroBio.fulfilled, (state, action) => {
-            console.log(action);
             state.isFetchingBio = false;
             state.error = false;
-            state.bio = action.payload.bio;
+            state.bio = action.payload;
         })
         .addCase(superheroBio.rejected, (state, action) => {
             state.error = action.payload.error;
