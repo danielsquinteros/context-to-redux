@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import * as superhero from "./superheroSlice";
+import superhero from "./reducers/superhero";
 
 export default configureStore({
     reducer: {
-        superhero: superhero.superheroReducers
+        superhero: superhero
     }
 })
