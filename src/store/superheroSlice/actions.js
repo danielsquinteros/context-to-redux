@@ -4,7 +4,6 @@ import api from "../../context/api"
 export const superheroBio = createAsyncThunk('superhero/bio', async (id, { rejectWithValue }) => {
     try {
       const response = await api.Superhero.getBio(id);
-      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
