@@ -1,35 +1,28 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchBioThunk } from "../../store/actions/superhero";
-import { isFetchingBioSel, bioSel, superheroesErrSel } from "../../store/selectors/superhero";
+import { useSuperHero } from "../../context/SuperHeroContext";
 
 const SuperHeroHoc = (SuperHero) => function SuperHeroHoc() {
-    const dispatch = useDispatch()
-    const biography = useSelector(bioSel)
-    const isFetchingBio = useSelector(isFetchingBioSel)
-    const biographyErr = useSelector(superheroesErrSel)
+    const [{isFetching, isError, superhero} , { getSuperHero }] = useSuperHero();
     const { id } = useParams()
 
     useEffect(() => {
-        id && dispatch(fetchBioThunk(id));
+        id && getSuperHero(id);
     }, [id])
-
-    console.log(isFetchingBioSel,bioSel, superheroesErrSel )
     
     const renderContent = () => {
-        if(isFetchingBio){
+        if(isFetching){
             return <h1>Cargando...</h1>
         }
-        if(biographyErr){
-            return <h1>{biographyErr}</h1>
+        if(isError){
+            return <h1>{isError}</h1>
         }
-        if(biography){
+        if(superhero){
             return(
                 <SuperHero
-                name={biography['full-name']}
-                id={biography['id']}
-                alterEgos={biography['alter-egos']}
+                name={superhero['full-name']}
+                id={superhero['id']}
+                alterEgos={superhero['alter-egos']}
                 />
             )
         }
